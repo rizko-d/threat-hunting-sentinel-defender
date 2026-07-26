@@ -97,3 +97,27 @@ hunts:
     platforms: [defender-xdr, sentinel]
     data_sources: [DeviceProcessEvents, SecurityEvent, Event]
     file: hunts/impact/service-stop-recovery-tamper.md
+
+  - id: TH-PR-001
+    title: UAC Bypass via Auto-Elevated Binary Hijack
+    tactic: privilege-escalation
+    techniques: [T1548.002]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, DeviceRegistryEvents]
+    file: hunts/privilege-escalation/uac-bypass-autoelevate.md
+
+  - id: TH-PR-002
+    title: Access Token Manipulation & Parent-PID Spoofing
+    tactic: privilege-escalation
+    techniques: [T1134]
+    platforms: [defender-xdr]
+    data_sources: [DeviceProcessEvents, DeviceEvents]
+    file: hunts/privilege-escalation/token-manipulation-ppid-spoof.md
+
+  - id: TH-PR-003
+    title: DLL Search-Order & Phantom DLL Hijacking
+    tactic: privilege-escalation
+    techniques: [T1574.001, T1574.002]
+    platforms: [defender-xdr]
+    data_sources: [DeviceImageLoadEvents, DeviceFileEvents]
+    file: hunts/privilege-escalation/dll-search-order-hijacking.md

@@ -42,6 +42,9 @@ hunt methodology, blue team.
 | Shadow Copy Deletion | T1490 | Impact |
 | Mass File Encryption | T1486 | Impact |
 | Service Stop & Recovery Tamper | T1489/T1490 | Impact |
+| UAC Bypass via Auto-Elevate Hijack | T1548.002 | Privilege Escalation |
+| Token Manipulation & PPID Spoofing | T1134 | Privilege Escalation |
+| DLL Search-Order Hijacking | T1574.001/002 | Privilege Escalation |
 
 ## Who this is for
 

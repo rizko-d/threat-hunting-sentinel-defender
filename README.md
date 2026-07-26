@@ -2,7 +2,7 @@
 
 **A hypothesis-driven threat hunting methodology and KQL hunt library for Microsoft Sentinel and Microsoft Defender XDR (Advanced Hunting).**
 
-> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 12 across 8 ATT&CK tactics
+> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 15 across 9 ATT&CK tactics
 
 This repository documents *how* I run structured, repeatable threat hunts in the Microsoft security stack — the methodology, the hypothesis framework, the KQL techniques, and a growing library of ready-to-run **Hunt Cards** mapped to MITRE ATT&CK. It is not a dump of queries; it is a hunting *process* you can adopt, with worked examples.
 
@@ -73,7 +73,7 @@ and Defender XDR schemas I hunt in, plus key Windows event IDs.
 
 ## Hunt library
 
-Twelve Hunt Cards across eight ATT&CK tactics. Each is a complete, documented,
+Fifteen Hunt Cards across nine ATT&CK tactics. Each is a complete, documented,
 copy-paste-ready hunt.
 
 | Hunt | ATT&CK | Tactic | Platform |
@@ -90,6 +90,9 @@ copy-paste-ready hunt.
 | [Shadow Copy Deletion](hunts/impact/shadow-copy-deletion.md) | T1490 | Impact | Both |
 | [Mass File Encryption](hunts/impact/mass-file-encryption.md) | T1486 | Impact | Defender XDR |
 | [Service Stop & Recovery Tamper](hunts/impact/service-stop-recovery-tamper.md) | T1489/T1490 | Impact | Both |
+| [UAC Bypass via Auto-Elevate Hijack](hunts/privilege-escalation/uac-bypass-autoelevate.md) | T1548.002 | Privilege Escalation | Both |
+| [Token Manipulation & PPID Spoofing](hunts/privilege-escalation/token-manipulation-ppid-spoof.md) | T1134 | Privilege Escalation | Defender XDR |
+| [DLL Search-Order Hijacking](hunts/privilege-escalation/dll-search-order-hijacking.md) | T1574.001/002 | Privilege Escalation | Defender XDR |
 
 See [ATTACK_MATRIX.md](ATTACK_MATRIX.md) for the coverage heatmap and
 [mapping/attack-coverage.md](mapping/attack-coverage.md) for gap analysis.
@@ -116,6 +119,7 @@ threat-hunting-sentinel-defender/
 │   ├── credential-access/
 │   ├── execution/
 │   ├── persistence/
+│   ├── privilege-escalation/
 │   ├── defense-evasion/
 │   ├── discovery/
 │   ├── lateral-movement/
@@ -155,8 +159,8 @@ correlate identity/network in Sentinel.
 - [x] 9 Hunt Cards across 7 ATT&CK tactics
 - [x] ATT&CK coverage tracking + gap analysis
 - [x] Impact hunts (ransomware: shadow copy deletion, mass encryption, service stop)
+- [x] Privilege Escalation hunts (UAC bypass, token manipulation, DLL hijacking)
 - [ ] Initial Access hunts (phishing delivery, public-facing app exploit)
-- [ ] Privilege Escalation hunts (token manipulation, UAC bypass)
 - [ ] Purple-team validation notes per hunt
 
 ---

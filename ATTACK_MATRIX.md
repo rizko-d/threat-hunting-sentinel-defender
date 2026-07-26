@@ -7,9 +7,9 @@ covering that technique.
 
 | Metric | Value |
 |---|---|
-| **Tactics covered** | 8 of 14 |
-| **Techniques hunted** | 13+ |
-| **Hunt Cards** | 12 |
+| **Tactics covered** | 9 of 14 |
+| **Techniques hunted** | 17+ |
+| **Hunt Cards** | 15 |
 | **Platforms** | Microsoft Sentinel + Defender XDR |
 
 ## Coverage by tactic
@@ -26,6 +26,15 @@ covering that technique.
 | Technique | Name | Hunt Card | Platform |
 |---|---|---|---|
 | T1059.001 | PowerShell | [Obfuscated PowerShell](hunts/execution/obfuscated-powershell.md) | Both |
+
+### Privilege Escalation
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1548.002 | Bypass User Account Control | [UAC Bypass via Auto-Elevate Hijack](hunts/privilege-escalation/uac-bypass-autoelevate.md) | Both |
+| T1134 | Access Token Manipulation | [Token Manipulation & PPID Spoofing](hunts/privilege-escalation/token-manipulation-ppid-spoof.md) | Defender XDR |
+| T1574.001 | DLL Search Order Hijacking | [DLL Search-Order Hijacking](hunts/privilege-escalation/dll-search-order-hijacking.md) | Defender XDR |
+| T1574.002 | DLL Side-Loading | [DLL Search-Order Hijacking](hunts/privilege-escalation/dll-search-order-hijacking.md) | Defender XDR |
 
 ### Persistence
 
@@ -80,7 +89,6 @@ covering that technique.
 | Tactic | Status | Planned |
 |---|---|---|
 | Initial Access | Not yet | Phishing delivery, public-facing app exploit |
-| Privilege Escalation | Not yet | Token manipulation, UAC bypass |
 | Reconnaissance | Out of scope | Limited internal telemetry |
 | Resource Development | Out of scope | Pre-intrusion |
 

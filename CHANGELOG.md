@@ -3,6 +3,20 @@
 All notable changes to this threat-hunting library are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.0] - 2026-07-26
+
+### Added
+
+- **3 Privilege Escalation Hunt Cards** — expanding coverage to 9 tactics / 15 hunts:
+  - UAC Bypass via Auto-Elevated Binary Hijack (T1548.002) — fodhelper/eventvwr/sdclt + registry hijack keys
+  - Access Token Manipulation & Parent-PID Spoofing (T1134) — SYSTEM-integrity mismatch, named-pipe impersonation
+  - DLL Search-Order & Phantom DLL Hijacking (T1574.001/002) — unsigned DLL from non-system path + plant→load correlation
+
+### Changed
+
+- Updated README, ATTACK_MATRIX, coverage tracking, and `mitre-attack.yaml` to
+  reflect 15 hunts across 9 ATT&CK tactics.
+
 ## [1.1.0] - 2026-07-26
 
 ### Added
