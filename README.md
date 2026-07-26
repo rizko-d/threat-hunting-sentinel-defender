@@ -2,6 +2,8 @@
 
 **A hypothesis-driven threat hunting methodology and KQL hunt library for Microsoft Sentinel and Microsoft Defender XDR (Advanced Hunting).**
 
+[![validate-hunts](https://github.com/rizko-d/threat-hunting-sentinel-defender/actions/workflows/validate.yml/badge.svg)](https://github.com/rizko-d/threat-hunting-sentinel-defender/actions/workflows/validate.yml)
+
 > **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 24 across 12 ATT&CK tactics
 
 This repository documents *how* I run structured, repeatable threat hunts in the Microsoft security stack — the methodology, the hypothesis framework, the KQL techniques, and a growing library of ready-to-run **Hunt Cards** mapped to MITRE ATT&CK. It is not a dump of queries; it is a hunting *process* you can adopt, with worked examples.
@@ -199,7 +201,7 @@ correlate identity/network in Sentinel.
 - [x] Purple-team validation notes on every Hunt Card
 - [x] Kill-chain hunt-chaining playbook (correlated intrusion stories)
 - [x] Sentinel deployment tooling (ARM templates + PowerShell)
-- [ ] GitHub Actions CI (hunt validator + link check)
+- [x] GitHub Actions CI (hunt validator + link check)
 
 ---
 
