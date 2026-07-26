@@ -1,0 +1,75 @@
+# Machine-readable ATT&CK mapping for the threat-hunting library.
+# One entry per hunt card.
+
+hunts:
+  - id: TH-CA-001
+    title: Kerberoasting via Anomalous TGS Requests
+    tactic: credential-access
+    techniques: [T1558.003]
+    platforms: [sentinel, defender-for-identity]
+    data_sources: [SecurityEvent, IdentityLogonEvents]
+    file: hunts/credential-access/kerberoasting-anomalous-tgs.md
+
+  - id: TH-CA-002
+    title: LSASS Credential Dumping
+    tactic: credential-access
+    techniques: [T1003.001]
+    platforms: [defender-xdr]
+    data_sources: [DeviceProcessEvents, DeviceEvents]
+    file: hunts/credential-access/lsass-credential-dumping.md
+
+  - id: TH-EX-001
+    title: Encoded / Obfuscated PowerShell Execution
+    tactic: execution
+    techniques: [T1059.001]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, SecurityEvent]
+    file: hunts/execution/obfuscated-powershell.md
+
+  - id: TH-PE-001
+    title: Suspicious Scheduled Task Persistence
+    tactic: persistence
+    techniques: [T1053.005]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, SecurityEvent]
+    file: hunts/persistence/suspicious-scheduled-task.md
+
+  - id: TH-DE-001
+    title: Windows Event Log Clearing
+    tactic: defense-evasion
+    techniques: [T1070.001]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [SecurityEvent, DeviceProcessEvents]
+    file: hunts/defense-evasion/event-log-clearing.md
+
+  - id: TH-DI-001
+    title: Active Directory Reconnaissance (BloodHound-style)
+    tactic: discovery
+    techniques: [T1087, T1069, T1482]
+    platforms: [defender-for-identity]
+    data_sources: [IdentityQueryEvents, IdentityDirectoryEvents]
+    file: hunts/discovery/ad-reconnaissance.md
+
+  - id: TH-LM-001
+    title: WMI Lateral Movement
+    tactic: lateral-movement
+    techniques: [T1047]
+    platforms: [defender-xdr]
+    data_sources: [DeviceProcessEvents, DeviceLogonEvents]
+    file: hunts/lateral-movement/wmi-lateral-movement.md
+
+  - id: TH-C2-001
+    title: C2 Beaconing by Interval Regularity
+    tactic: command-and-control
+    techniques: [T1071.001]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceNetworkEvents, CommonSecurityLog]
+    file: hunts/command-and-control/c2-beaconing-regularity.md
+
+  - id: TH-CL-001
+    title: Malicious OAuth App Consent & Mailbox Exfiltration
+    tactic: exfiltration
+    techniques: [T1098.003, T1114]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [CloudAppEvents, AuditLogs, OfficeActivity]
+    file: hunts/exfiltration/oauth-consent-mailbox-exfil.md

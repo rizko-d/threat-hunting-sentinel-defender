@@ -1,0 +1,61 @@
+# ATT&CK Coverage Tracking
+
+How this hunt library maps onto MITRE ATT&CK, and where the current gaps are.
+Coverage tracking turns ad-hoc hunting into a *program* — over time it shows
+which tactics are well-covered and which are blind spots to prioritize next.
+
+---
+
+## Coverage philosophy
+
+I don't chase 100% ATT&CK coverage — that's a vanity metric. I prioritize the
+techniques that are (a) most used against my sector/stack, (b) highest impact if
+successful, and (c) actually observable with the telemetry I have. A deliberately
+covered 30% beats a checkbox 100%.
+
+---
+
+## Current coverage
+
+| Tactic | Techniques Hunted | Hunt Cards |
+|---|---|---|
+| Credential Access | T1558.003, T1003.001 | Kerberoasting, LSASS Dumping |
+| Execution | T1059.001 | Obfuscated PowerShell |
+| Persistence | T1053.005 | Scheduled Task |
+| Defense Evasion | T1070.001 | Event Log Clearing |
+| Discovery | T1087, T1069, T1482 | AD Reconnaissance |
+| Lateral Movement | T1047 | WMI Lateral Movement |
+| Command and Control | T1071.001 | C2 Beaconing |
+| Collection / Exfiltration (cloud) | T1098.003, T1114 | OAuth Consent & Mailbox Exfil |
+
+**Tactics with hunts:** 7 of 14
+**Techniques hunted:** 10+
+
+---
+
+## Gap analysis (roadmap targets)
+
+Tactics not yet covered, prioritized for future hunt cards:
+
+| Tactic | Priority | Candidate hunts |
+|---|---|---|
+| Initial Access | High | Phishing delivery (EmailEvents), exploited public-facing app |
+| Privilege Escalation | High | Token manipulation, UAC bypass, DLL hijack |
+| Impact | High | Ransomware mass-file-modify, shadow copy deletion, defacement |
+| Resource Development | Low | (mostly pre-intrusion, limited internal telemetry) |
+| Reconnaissance | Low | (external; limited internal telemetry) |
+
+---
+
+## How coverage feeds the hunt program
+
+1. **Monthly review** — walk the matrix, pick the highest-priority uncovered
+   technique that's relevant + observable.
+2. **Purple-team alignment** — when the red team runs a TTP, confirm there's a
+   hunt card (or write one) and validate it fires.
+3. **Promote-and-retire** — hunts that graduate to detections move out of
+   "active hunt" into the SIEM's analytic rules; the coverage note records that
+   the technique is now *continuously* monitored, not just point-in-time hunted.
+
+See [../mapping/mitre-attack.yaml](mitre-attack.yaml) for the machine-readable
+mapping.

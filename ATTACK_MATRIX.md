@@ -1,0 +1,80 @@
+# MITRE ATT&CK Coverage Matrix
+
+Coverage heatmap for the threat-hunting library. Each cell shows the Hunt Card(s)
+covering that technique.
+
+## Coverage summary
+
+| Metric | Value |
+|---|---|
+| **Tactics covered** | 7 of 14 |
+| **Techniques hunted** | 10+ |
+| **Hunt Cards** | 9 |
+| **Platforms** | Microsoft Sentinel + Defender XDR |
+
+## Coverage by tactic
+
+### Credential Access
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1558.003 | Kerberoasting | [Kerberoasting via Anomalous TGS](hunts/credential-access/kerberoasting-anomalous-tgs.md) | Sentinel + DfI |
+| T1003.001 | LSASS Memory | [LSASS Credential Dumping](hunts/credential-access/lsass-credential-dumping.md) | Defender XDR |
+
+### Execution
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1059.001 | PowerShell | [Obfuscated PowerShell](hunts/execution/obfuscated-powershell.md) | Both |
+
+### Persistence
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1053.005 | Scheduled Task | [Suspicious Scheduled Task](hunts/persistence/suspicious-scheduled-task.md) | Both |
+
+### Defense Evasion
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1070.001 | Clear Windows Event Logs | [Event Log Clearing](hunts/defense-evasion/event-log-clearing.md) | Both |
+
+### Discovery
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1087 | Account Discovery | [AD Reconnaissance](hunts/discovery/ad-reconnaissance.md) | Defender for Identity |
+| T1069 | Permission Groups Discovery | [AD Reconnaissance](hunts/discovery/ad-reconnaissance.md) | Defender for Identity |
+| T1482 | Domain Trust Discovery | [AD Reconnaissance](hunts/discovery/ad-reconnaissance.md) | Defender for Identity |
+
+### Lateral Movement
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1047 | Windows Management Instrumentation | [WMI Lateral Movement](hunts/lateral-movement/wmi-lateral-movement.md) | Defender XDR |
+
+### Command and Control
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1071.001 | Web Protocols (Beaconing) | [C2 Beaconing by Regularity](hunts/command-and-control/c2-beaconing-regularity.md) | Both |
+
+### Collection / Exfiltration (cloud)
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1098.003 | Additional Cloud Roles | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
+| T1114 | Email Collection | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
+
+## Uncovered tactics (roadmap)
+
+| Tactic | Status | Planned |
+|---|---|---|
+| Initial Access | Not yet | Phishing delivery, public-facing app exploit |
+| Privilege Escalation | Not yet | Token manipulation, UAC bypass |
+| Impact | Not yet | Ransomware mass-modify, shadow copy deletion |
+| Reconnaissance | Out of scope | Limited internal telemetry |
+| Resource Development | Out of scope | Pre-intrusion |
+
+See [mapping/attack-coverage.md](mapping/attack-coverage.md) for gap analysis and
+prioritization.
