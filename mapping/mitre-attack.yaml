@@ -121,3 +121,27 @@ hunts:
     platforms: [defender-xdr]
     data_sources: [DeviceImageLoadEvents, DeviceFileEvents]
     file: hunts/privilege-escalation/dll-search-order-hijacking.md
+
+  - id: TH-IA-001
+    title: Phishing Delivery via Malicious Mail
+    tactic: initial-access
+    techniques: [T1566.001, T1566.002]
+    platforms: [defender-xdr]
+    data_sources: [EmailEvents, EmailAttachmentInfo, EmailUrlInfo]
+    file: hunts/initial-access/phishing-delivery-mail.md
+
+  - id: TH-IA-002
+    title: Public-Facing App Exploitation & Web Shell
+    tactic: initial-access
+    techniques: [T1190, T1505.003]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, DeviceFileEvents, W3CIISLog]
+    file: hunts/initial-access/public-facing-app-exploit-webshell.md
+
+  - id: TH-IA-003
+    title: Malicious Attachment / Link User Execution
+    tactic: initial-access
+    techniques: [T1204.001, T1204.002]
+    platforms: [defender-xdr]
+    data_sources: [DeviceProcessEvents, DeviceFileEvents]
+    file: hunts/initial-access/malicious-user-execution.md

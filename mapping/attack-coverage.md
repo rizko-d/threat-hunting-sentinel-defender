@@ -19,6 +19,7 @@ covered 30% beats a checkbox 100%.
 
 | Tactic | Techniques Hunted | Hunt Cards |
 |---|---|---|
+| Initial Access | T1566.001/002, T1190, T1505.003, T1204.001/002 | Phishing Delivery, Public-Facing App Exploit & Web Shell, Malicious User Execution |
 | Credential Access | T1558.003, T1003.001 | Kerberoasting, LSASS Dumping |
 | Execution | T1059.001 | Obfuscated PowerShell |
 | Privilege Escalation | T1548.002, T1134, T1574.001/002 | UAC Bypass, Token Manipulation & PPID Spoofing, DLL Search-Order Hijacking |
@@ -30,8 +31,8 @@ covered 30% beats a checkbox 100%.
 | Collection / Exfiltration (cloud) | T1098.003, T1114 | OAuth Consent & Mailbox Exfil |
 | Impact | T1490, T1486, T1489 | Shadow Copy Deletion, Mass File Encryption, Service Stop & Recovery Tamper |
 
-**Tactics with hunts:** 9 of 14
-**Techniques hunted:** 17+
+**Tactics with hunts:** 10 of 14
+**Techniques hunted:** 22+
 
 ---
 
@@ -41,7 +42,6 @@ Tactics not yet covered, prioritized for future hunt cards:
 
 | Tactic | Priority | Candidate hunts |
 |---|---|---|
-| Initial Access | High | Phishing delivery (EmailEvents), exploited public-facing app |
 | Resource Development | Low | (mostly pre-intrusion, limited internal telemetry) |
 | Reconnaissance | Low | (external; limited internal telemetry) |
 

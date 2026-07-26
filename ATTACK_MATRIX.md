@@ -7,12 +7,23 @@ covering that technique.
 
 | Metric | Value |
 |---|---|
-| **Tactics covered** | 9 of 14 |
-| **Techniques hunted** | 17+ |
-| **Hunt Cards** | 15 |
+| **Tactics covered** | 10 of 14 |
+| **Techniques hunted** | 22+ |
+| **Hunt Cards** | 18 |
 | **Platforms** | Microsoft Sentinel + Defender XDR |
 
 ## Coverage by tactic
+
+### Initial Access
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1566.001 | Spearphishing Attachment | [Phishing Delivery via Mail](hunts/initial-access/phishing-delivery-mail.md) | Defender XDR |
+| T1566.002 | Spearphishing Link | [Phishing Delivery via Mail](hunts/initial-access/phishing-delivery-mail.md) | Defender XDR |
+| T1190 | Exploit Public-Facing Application | [Public-Facing App Exploit & Web Shell](hunts/initial-access/public-facing-app-exploit-webshell.md) | Both |
+| T1505.003 | Web Shell | [Public-Facing App Exploit & Web Shell](hunts/initial-access/public-facing-app-exploit-webshell.md) | Both |
+| T1204.001 | Malicious Link | [Malicious User Execution](hunts/initial-access/malicious-user-execution.md) | Defender XDR |
+| T1204.002 | Malicious File | [Malicious User Execution](hunts/initial-access/malicious-user-execution.md) | Defender XDR |
 
 ### Credential Access
 
@@ -88,7 +99,6 @@ covering that technique.
 
 | Tactic | Status | Planned |
 |---|---|---|
-| Initial Access | Not yet | Phishing delivery, public-facing app exploit |
 | Reconnaissance | Out of scope | Limited internal telemetry |
 | Resource Development | Out of scope | Pre-intrusion |
 

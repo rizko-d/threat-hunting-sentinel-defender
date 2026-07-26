@@ -2,7 +2,7 @@
 
 **A hypothesis-driven threat hunting methodology and KQL hunt library for Microsoft Sentinel and Microsoft Defender XDR (Advanced Hunting).**
 
-> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 15 across 9 ATT&CK tactics
+> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 18 across 10 ATT&CK tactics
 
 This repository documents *how* I run structured, repeatable threat hunts in the Microsoft security stack — the methodology, the hypothesis framework, the KQL techniques, and a growing library of ready-to-run **Hunt Cards** mapped to MITRE ATT&CK. It is not a dump of queries; it is a hunting *process* you can adopt, with worked examples.
 
@@ -73,11 +73,14 @@ and Defender XDR schemas I hunt in, plus key Windows event IDs.
 
 ## Hunt library
 
-Fifteen Hunt Cards across nine ATT&CK tactics. Each is a complete, documented,
+Eighteen Hunt Cards across ten ATT&CK tactics. Each is a complete, documented,
 copy-paste-ready hunt.
 
 | Hunt | ATT&CK | Tactic | Platform |
 |---|---|---|---|
+| [Phishing Delivery via Mail](hunts/initial-access/phishing-delivery-mail.md) | T1566.001/002 | Initial Access | Defender XDR |
+| [Public-Facing App Exploit & Web Shell](hunts/initial-access/public-facing-app-exploit-webshell.md) | T1190/T1505.003 | Initial Access | Both |
+| [Malicious User Execution](hunts/initial-access/malicious-user-execution.md) | T1204.001/002 | Initial Access | Defender XDR |
 | [Kerberoasting via Anomalous TGS](hunts/credential-access/kerberoasting-anomalous-tgs.md) | T1558.003 | Credential Access | Sentinel + DfI |
 | [LSASS Credential Dumping](hunts/credential-access/lsass-credential-dumping.md) | T1003.001 | Credential Access | Defender XDR |
 | [Obfuscated PowerShell](hunts/execution/obfuscated-powershell.md) | T1059.001 | Execution | Both |
@@ -116,6 +119,7 @@ threat-hunting-sentinel-defender/
 │   ├── data-sources.md           # Tables/schemas/event IDs reference
 │   └── index.md                  # GitHub Pages landing page
 ├── hunts/                        # Hunt Cards by ATT&CK tactic
+│   ├── initial-access/
 │   ├── credential-access/
 │   ├── execution/
 │   ├── persistence/
@@ -160,7 +164,7 @@ correlate identity/network in Sentinel.
 - [x] ATT&CK coverage tracking + gap analysis
 - [x] Impact hunts (ransomware: shadow copy deletion, mass encryption, service stop)
 - [x] Privilege Escalation hunts (UAC bypass, token manipulation, DLL hijacking)
-- [ ] Initial Access hunts (phishing delivery, public-facing app exploit)
+- [x] Initial Access hunts (phishing delivery, public-facing app exploit, user execution)
 - [ ] Purple-team validation notes per hunt
 
 ---

@@ -3,6 +3,22 @@
 All notable changes to this threat-hunting library are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.3.0] - 2026-07-26
+
+### Added
+
+- **3 Initial Access Hunt Cards** — closing the kill-chain to 10 tactics / 18 hunts:
+  - Phishing Delivery via Malicious Mail (T1566.001/002) — delivered dangerous attachments + link/auth-fail hunting
+  - Public-Facing App Exploitation & Web Shell (T1190/T1505.003) — web-process→shell + web-shell-on-disk + IIS POST hunting
+  - Malicious Attachment / Link User Execution (T1204.001/002) — Office/browser→interpreter + downloads/ISO execution
+- The three link delivery → user execution → payload/C2, joining the front of the
+  kill-chain to the existing Execution/C2/Impact cards.
+
+### Changed
+
+- Updated README, ATTACK_MATRIX, coverage tracking, and `mitre-attack.yaml` to
+  reflect 18 hunts across 10 ATT&CK tactics.
+
 ## [1.2.0] - 2026-07-26
 
 ### Added

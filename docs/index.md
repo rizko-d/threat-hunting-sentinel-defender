@@ -30,6 +30,9 @@ hunt methodology, blue team.
 
 | Hunt | ATT&CK | Tactic |
 |---|---|---|
+| Phishing Delivery via Mail | T1566.001/002 | Initial Access |
+| Public-Facing App Exploit & Web Shell | T1190/T1505.003 | Initial Access |
+| Malicious User Execution | T1204.001/002 | Initial Access |
 | Kerberoasting via Anomalous TGS | T1558.003 | Credential Access |
 | LSASS Credential Dumping | T1003.001 | Credential Access |
 | Obfuscated PowerShell | T1059.001 | Execution |
