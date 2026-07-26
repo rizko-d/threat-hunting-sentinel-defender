@@ -27,9 +27,10 @@ covered 30% beats a checkbox 100%.
 | Lateral Movement | T1047 | WMI Lateral Movement |
 | Command and Control | T1071.001 | C2 Beaconing |
 | Collection / Exfiltration (cloud) | T1098.003, T1114 | OAuth Consent & Mailbox Exfil |
+| Impact | T1490, T1486, T1489 | Shadow Copy Deletion, Mass File Encryption, Service Stop & Recovery Tamper |
 
-**Tactics with hunts:** 7 of 14
-**Techniques hunted:** 10+
+**Tactics with hunts:** 8 of 14
+**Techniques hunted:** 13+
 
 ---
 
@@ -41,7 +42,6 @@ Tactics not yet covered, prioritized for future hunt cards:
 |---|---|---|
 | Initial Access | High | Phishing delivery (EmailEvents), exploited public-facing app |
 | Privilege Escalation | High | Token manipulation, UAC bypass, DLL hijack |
-| Impact | High | Ransomware mass-file-modify, shadow copy deletion, defacement |
 | Resource Development | Low | (mostly pre-intrusion, limited internal telemetry) |
 | Reconnaissance | Low | (external; limited internal telemetry) |
 

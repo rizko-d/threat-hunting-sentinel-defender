@@ -7,9 +7,9 @@ covering that technique.
 
 | Metric | Value |
 |---|---|
-| **Tactics covered** | 7 of 14 |
-| **Techniques hunted** | 10+ |
-| **Hunt Cards** | 9 |
+| **Tactics covered** | 8 of 14 |
+| **Techniques hunted** | 13+ |
+| **Hunt Cards** | 12 |
 | **Platforms** | Microsoft Sentinel + Defender XDR |
 
 ## Coverage by tactic
@@ -66,13 +66,21 @@ covering that technique.
 | T1098.003 | Additional Cloud Roles | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
 | T1114 | Email Collection | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
 
+### Impact
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1490 | Inhibit System Recovery | [Shadow Copy Deletion](hunts/impact/shadow-copy-deletion.md) | Both |
+| T1486 | Data Encrypted for Impact | [Mass File Encryption](hunts/impact/mass-file-encryption.md) | Defender XDR |
+| T1489 | Service Stop | [Service Stop & Recovery Tamper](hunts/impact/service-stop-recovery-tamper.md) | Both |
+| T1490 | Inhibit System Recovery | [Service Stop & Recovery Tamper](hunts/impact/service-stop-recovery-tamper.md) | Both |
+
 ## Uncovered tactics (roadmap)
 
 | Tactic | Status | Planned |
 |---|---|---|
 | Initial Access | Not yet | Phishing delivery, public-facing app exploit |
 | Privilege Escalation | Not yet | Token manipulation, UAC bypass |
-| Impact | Not yet | Ransomware mass-modify, shadow copy deletion |
 | Reconnaissance | Out of scope | Limited internal telemetry |
 | Resource Development | Out of scope | Pre-intrusion |
 

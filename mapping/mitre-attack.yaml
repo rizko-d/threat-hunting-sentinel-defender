@@ -73,3 +73,27 @@ hunts:
     platforms: [defender-xdr, sentinel]
     data_sources: [CloudAppEvents, AuditLogs, OfficeActivity]
     file: hunts/exfiltration/oauth-consent-mailbox-exfil.md
+
+  - id: TH-IM-001
+    title: Shadow Copy Deletion (Inhibit Recovery)
+    tactic: impact
+    techniques: [T1490]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, SecurityEvent]
+    file: hunts/impact/shadow-copy-deletion.md
+
+  - id: TH-IM-002
+    title: Mass File Modification / Ransomware Encryption
+    tactic: impact
+    techniques: [T1486]
+    platforms: [defender-xdr]
+    data_sources: [DeviceFileEvents, DeviceProcessEvents]
+    file: hunts/impact/mass-file-encryption.md
+
+  - id: TH-IM-003
+    title: Service Stop & Recovery Tampering (Pre-Encryption)
+    tactic: impact
+    techniques: [T1489, T1490]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, SecurityEvent, Event]
+    file: hunts/impact/service-stop-recovery-tamper.md

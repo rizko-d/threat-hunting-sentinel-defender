@@ -3,6 +3,22 @@
 All notable changes to this threat-hunting library are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.1.0] - 2026-07-26
+
+### Added
+
+- **3 Impact (ransomware) Hunt Cards** — expanding coverage to 8 tactics / 12 hunts:
+  - Shadow Copy Deletion — Inhibit System Recovery (T1490)
+  - Mass File Modification / Ransomware Encryption (T1486)
+  - Service Stop & Recovery Tampering — Pre-Encryption (T1489/T1490)
+- The three chain together as the ransomware kill-chain shape: service stop →
+  shadow delete → mass encrypt, with cross-references between the cards.
+
+### Changed
+
+- Updated README, ATTACK_MATRIX, coverage tracking, and `mitre-attack.yaml` to
+  reflect 12 hunts across 8 ATT&CK tactics.
+
 ## [1.0.0] - 2026-07-26
 
 ### Added

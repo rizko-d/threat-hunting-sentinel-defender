@@ -2,7 +2,7 @@
 
 **A hypothesis-driven threat hunting methodology and KQL hunt library for Microsoft Sentinel and Microsoft Defender XDR (Advanced Hunting).**
 
-> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 9 across 7 ATT&CK tactics
+> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 12 across 8 ATT&CK tactics
 
 This repository documents *how* I run structured, repeatable threat hunts in the Microsoft security stack — the methodology, the hypothesis framework, the KQL techniques, and a growing library of ready-to-run **Hunt Cards** mapped to MITRE ATT&CK. It is not a dump of queries; it is a hunting *process* you can adopt, with worked examples.
 
@@ -73,7 +73,7 @@ and Defender XDR schemas I hunt in, plus key Windows event IDs.
 
 ## Hunt library
 
-Nine Hunt Cards across seven ATT&CK tactics. Each is a complete, documented,
+Twelve Hunt Cards across eight ATT&CK tactics. Each is a complete, documented,
 copy-paste-ready hunt.
 
 | Hunt | ATT&CK | Tactic | Platform |
@@ -87,6 +87,9 @@ copy-paste-ready hunt.
 | [WMI Lateral Movement](hunts/lateral-movement/wmi-lateral-movement.md) | T1047 | Lateral Movement | Defender XDR |
 | [C2 Beaconing by Regularity](hunts/command-and-control/c2-beaconing-regularity.md) | T1071.001 | Command & Control | Both |
 | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | T1098.003/T1114 | Collection/Exfil (cloud) | Both |
+| [Shadow Copy Deletion](hunts/impact/shadow-copy-deletion.md) | T1490 | Impact | Both |
+| [Mass File Encryption](hunts/impact/mass-file-encryption.md) | T1486 | Impact | Defender XDR |
+| [Service Stop & Recovery Tamper](hunts/impact/service-stop-recovery-tamper.md) | T1489/T1490 | Impact | Both |
 
 See [ATTACK_MATRIX.md](ATTACK_MATRIX.md) for the coverage heatmap and
 [mapping/attack-coverage.md](mapping/attack-coverage.md) for gap analysis.
@@ -117,7 +120,8 @@ threat-hunting-sentinel-defender/
 │   ├── discovery/
 │   ├── lateral-movement/
 │   ├── command-and-control/
-│   └── exfiltration/
+│   ├── exfiltration/
+│   └── impact/
 ├── templates/
 │   └── hunt-card.md              # Copy-paste template for new hunts
 └── mapping/
@@ -150,9 +154,9 @@ correlate identity/network in Sentinel.
 - [x] Data-sources reference (Sentinel tables + XDR schema + event IDs)
 - [x] 9 Hunt Cards across 7 ATT&CK tactics
 - [x] ATT&CK coverage tracking + gap analysis
+- [x] Impact hunts (ransomware: shadow copy deletion, mass encryption, service stop)
 - [ ] Initial Access hunts (phishing delivery, public-facing app exploit)
 - [ ] Privilege Escalation hunts (token manipulation, UAC bypass)
-- [ ] Impact hunts (ransomware mass-modify, shadow copy deletion)
 - [ ] Purple-team validation notes per hunt
 
 ---
