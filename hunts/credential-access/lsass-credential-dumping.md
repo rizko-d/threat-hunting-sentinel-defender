@@ -88,6 +88,17 @@ DeviceEvents
 - **Malicious confirmation:** the resulting dump file is exfiltrated, or the host
   shows follow-on lateral movement using freshly harvested credentials.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1003.001` (comsvcs MiniDump `#24`, procdump `-ma lsass`, Mimikatz `sekurlsa`)
+- **Expected hit:** the primary query fires on the `comsvcs`/`procdump`/`sekurlsa` command-line, or the `DeviceEvents` pivot on OpenProcess to lsass.exe.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

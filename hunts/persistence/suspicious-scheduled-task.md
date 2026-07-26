@@ -84,6 +84,17 @@ SecurityEvent
 - **Malicious confirmation:** the referenced payload is malicious, the task
   triggers a beacon, or it re-creates itself after removal.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1053.005` (schtasks /create pointing at a temp/LOLBin action)
+- **Expected hit:** the `schtasks.exe /create` row surfaces with a temp/AppData path or encoded action, and/or EID 4698.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

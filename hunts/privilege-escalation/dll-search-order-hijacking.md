@@ -98,6 +98,17 @@ DeviceFileEvents
   beacon, injection, credential access) or the plant+load sequence is tied to an
   attacker-controlled drop.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1574.001` / T1574.002 (side-load an unsigned DLL next to a signed binary)
+- **Expected hit:** the signed process loads an unsigned DLL from a non-system path, correlated with the recent DLL-write pivot.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

@@ -92,6 +92,17 @@ SecurityEvent
   modification/encryption, ransom note creation, or service/process termination of
   security tooling.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1490` (`vssadmin delete shadows /all /quiet`, `wmic shadowcopy delete`)
+- **Expected hit:** the vssadmin/wmic/wbadmin/bcdedit row surfaces (Defender) and/or EID 4688 (Sentinel).
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

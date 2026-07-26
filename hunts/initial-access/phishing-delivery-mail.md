@@ -93,6 +93,17 @@ EmailEvents
 - **Malicious confirmation:** the recipient opened the attachment/clicked the link
   and the endpoint shows follow-on execution (correlate TH-IA-003 / TH-EX-001).
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** a lab phish send (GoPhish / manual) with an ISO/LNK/HTA attachment or a link to a rare test domain
+- **Expected hit:** the delivered message with a dangerous attachment or auth-fail + rare-domain URL surfaces in `EmailEvents`.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

@@ -82,6 +82,17 @@ IdentityLogonEvents
 - **Malicious confirmation:** recon is followed by targeted authentication to
   privileged accounts/hosts identified during enumeration.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1087.002` / SharpHound collection run against a lab DC
+- **Expected hit:** the source principal exceeds the distinct-target threshold in `IdentityQueryEvents` within one window.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

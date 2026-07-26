@@ -42,6 +42,12 @@ hunt methodology, blue team.
 | WMI Lateral Movement | T1047 | Lateral Movement |
 | C2 Beaconing by Regularity | T1071.001 | Command & Control |
 | OAuth Consent & Mailbox Exfil | T1098.003/T1114 | Collection/Exfiltration |
+| Screen Capture & Clipboard | T1113/T1115 | Collection |
+| Archive for Staging | T1560.001 | Collection |
+| Automated Collection from Shares | T1119/T1039 | Collection |
+| Exfiltration Over C2 Channel | T1041 | Exfiltration |
+| Exfiltration to Cloud Storage | T1567.002 | Exfiltration |
+| Exfil Over Alternative Protocol (DNS) | T1048/T1048.003 | Exfiltration |
 | Shadow Copy Deletion | T1490 | Impact |
 | Mass File Encryption | T1486 | Impact |
 | Service Stop & Recovery Tamper | T1489/T1490 | Impact |

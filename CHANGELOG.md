@@ -3,6 +3,23 @@
 All notable changes to this threat-hunting library are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.4.0] - 2026-07-26
+
+### Added
+
+- **6 new Hunt Cards** — Collection + standalone Exfiltration, to 24 hunts / 12 tactics:
+  - Collection: Screen Capture & Clipboard (T1113/T1115), Archive for Staging (T1560.001), Automated Collection from Shares (T1119/T1039)
+  - Exfiltration: Over C2 Channel (T1041), To Cloud Storage (T1567.002), Over Alternative Protocol/DNS (T1048/.003)
+- **Purple-team Validation section on every Hunt Card** — Atomic Red Team test / lab-simulation reference + expected-hit, so each hunt is verifiable before you rely on it.
+- **Kill-chain hunt-chaining playbook** (`methodology/04-hunt-chaining-killchain.md`) — correlated intrusion stories showing how hunts chain end-to-end.
+- **Sentinel deployment tooling** (`deploy/`) — ARM templates + `Deploy-Hunts.ps1` to push hunts as Scheduled Analytic Rules or saved Hunting Queries.
+
+### Changed
+
+- Updated README, ATTACK_MATRIX, coverage tracking, and `mitre-attack.yaml` to
+  reflect 24 hunts across 12 ATT&CK tactics; split the former "Collection /
+  Exfiltration (cloud)" grouping into distinct Collection and Exfiltration sections.
+
 ## [1.3.0] - 2026-07-26
 
 ### Added

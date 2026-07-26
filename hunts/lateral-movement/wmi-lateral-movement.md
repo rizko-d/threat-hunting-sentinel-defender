@@ -87,6 +87,17 @@ DeviceProcessEvents
   the chain continues to further hosts, or credentials were freshly stolen before
   the pivot.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1047` (`wmic /node: process call create`), or Impacket `wmiexec.py`
+- **Expected hit:** `wmiprvse.exe` spawns a shell within 5m of a network logon; the wmiexec ADMIN$ redirect pattern is a fast-path tell.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

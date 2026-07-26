@@ -28,11 +28,12 @@ covered 30% beats a checkbox 100%.
 | Discovery | T1087, T1069, T1482 | AD Reconnaissance |
 | Lateral Movement | T1047 | WMI Lateral Movement |
 | Command and Control | T1071.001 | C2 Beaconing |
-| Collection / Exfiltration (cloud) | T1098.003, T1114 | OAuth Consent & Mailbox Exfil |
+| Collection | T1113, T1115, T1560.001, T1119, T1039 | Screen Capture & Clipboard, Archive for Staging, Automated Collection from Shares |
+| Exfiltration | T1041, T1567.002, T1048/.003, T1098.003, T1114 | Exfil Over C2, Exfil to Cloud Storage, Exfil Over Alt Protocol (DNS), OAuth Consent & Mailbox Exfil |
 | Impact | T1490, T1486, T1489 | Shadow Copy Deletion, Mass File Encryption, Service Stop & Recovery Tamper |
 
-**Tactics with hunts:** 10 of 14
-**Techniques hunted:** 22+
+**Tactics with hunts:** 12 of 14
+**Techniques hunted:** 30+
 
 ---
 

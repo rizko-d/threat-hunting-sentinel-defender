@@ -97,6 +97,17 @@ Event
 - **Malicious confirmation:** correlates with shadow-copy deletion (TH-IM-001) or
   mass encryption (TH-IM-002); EDR tampering paired with the service stops.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1489` (`net stop`, `sc stop` against a lab DB/backup/AV service)
+- **Expected hit:** 3+ targeted security/backup/DB service stops surface in one window (Defender), or SCM EID 7036/7040 (Sentinel).
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

@@ -72,6 +72,17 @@ DeviceProcessEvents
 - **Malicious confirmation:** clearing is bracketed by other attack behavior
   (dumping, lateral movement) — a deliberate evidence wipe mid-intrusion.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1070.001` (`wevtutil cl security`, `Clear-EventLog`)
+- **Expected hit:** EID 1102 appears (Sentinel) and/or the `wevtutil cl`/`Clear-EventLog` process row (Defender).
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

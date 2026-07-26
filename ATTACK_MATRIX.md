@@ -7,9 +7,9 @@ covering that technique.
 
 | Metric | Value |
 |---|---|
-| **Tactics covered** | 10 of 14 |
-| **Techniques hunted** | 22+ |
-| **Hunt Cards** | 18 |
+| **Tactics covered** | 12 of 14 |
+| **Techniques hunted** | 30+ |
+| **Hunt Cards** | 24 |
 | **Platforms** | Microsoft Sentinel + Defender XDR |
 
 ## Coverage by tactic
@@ -79,12 +79,26 @@ covering that technique.
 |---|---|---|---|
 | T1071.001 | Web Protocols (Beaconing) | [C2 Beaconing by Regularity](hunts/command-and-control/c2-beaconing-regularity.md) | Both |
 
-### Collection / Exfiltration (cloud)
+### Collection
 
 | Technique | Name | Hunt Card | Platform |
 |---|---|---|---|
-| T1098.003 | Additional Cloud Roles | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
-| T1114 | Email Collection | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
+| T1113 | Screen Capture | [Screen Capture & Clipboard](hunts/collection/screen-capture-clipboard.md) | Defender XDR |
+| T1115 | Clipboard Data | [Screen Capture & Clipboard](hunts/collection/screen-capture-clipboard.md) | Defender XDR |
+| T1560.001 | Archive via Utility | [Archive for Staging](hunts/collection/archive-for-staging.md) | Both |
+| T1119 | Automated Collection | [Automated Collection from Shares](hunts/collection/automated-collection-file-share.md) | Defender XDR |
+| T1039 | Data from Network Shared Drive | [Automated Collection from Shares](hunts/collection/automated-collection-file-share.md) | Defender XDR |
+
+### Exfiltration
+
+| Technique | Name | Hunt Card | Platform |
+|---|---|---|---|
+| T1041 | Exfiltration Over C2 Channel | [Exfiltration Over C2 Channel](hunts/exfiltration/exfil-over-web-c2-channel.md) | Defender XDR |
+| T1567.002 | Exfiltration to Cloud Storage | [Exfiltration to Cloud Storage](hunts/exfiltration/exfil-to-cloud-storage.md) | Both |
+| T1048 | Exfil Over Alternative Protocol | [Exfil Over Alternative Protocol (DNS)](hunts/exfiltration/exfil-over-alternative-protocol-dns.md) | Both |
+| T1048.003 | Exfil Over Unencrypted Non-C2 Protocol | [Exfil Over Alternative Protocol (DNS)](hunts/exfiltration/exfil-over-alternative-protocol-dns.md) | Both |
+| T1098.003 | Additional Cloud Roles (OAuth) | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
+| T1114 | Email Collection (cloud) | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | Both |
 
 ### Impact
 

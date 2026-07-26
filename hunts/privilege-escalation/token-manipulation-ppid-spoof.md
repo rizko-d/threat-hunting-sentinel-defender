@@ -91,6 +91,17 @@ DeviceProcessEvents
 - **Malicious confirmation:** the escalated process performs admin-only actions
   (LSASS access, service install, defense tampering) it could not do pre-escalation.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1134.004` (parent-PID spoof), or a lab PrintSpoofer/named-pipe impersonation
+- **Expected hit:** the parent/integrity-mismatch row surfaces, or the named-pipe `\\.\pipe\` SYSTEM-shell pivot fires.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

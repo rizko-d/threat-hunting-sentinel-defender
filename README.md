@@ -2,7 +2,7 @@
 
 **A hypothesis-driven threat hunting methodology and KQL hunt library for Microsoft Sentinel and Microsoft Defender XDR (Advanced Hunting).**
 
-> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 18 across 10 ATT&CK tactics
+> **License:** MIT · **Platform:** Microsoft Sentinel + Defender XDR · **Language:** KQL · **Hunts:** 24 across 12 ATT&CK tactics
 
 This repository documents *how* I run structured, repeatable threat hunts in the Microsoft security stack — the methodology, the hypothesis framework, the KQL techniques, and a growing library of ready-to-run **Hunt Cards** mapped to MITRE ATT&CK. It is not a dump of queries; it is a hunting *process* you can adopt, with worked examples.
 
@@ -65,6 +65,7 @@ The heart of the repo. Read these in order:
 | [01 — Hypothesis Framework](methodology/01-hypothesis-framework.md) | Writing specific, falsifiable hypotheses; prioritization scoring |
 | [02 — KQL Hunting Techniques](methodology/02-kql-hunting-techniques.md) | Long-tail analysis, joins, beaconing, obfuscation, performance |
 | [03 — Triage & Documentation](methodology/03-triage-and-documentation.md) | Verdicts, pivots, evidence standard, hunt→detection graduation |
+| [04 — Hunt Chaining (Kill-Chain)](methodology/04-hunt-chaining-killchain.md) | Correlated intrusion stories; how hunts chain into one investigation |
 
 Supporting reference: [Data Sources](docs/data-sources.md) — the Sentinel tables
 and Defender XDR schemas I hunt in, plus key Windows event IDs.
@@ -73,7 +74,7 @@ and Defender XDR schemas I hunt in, plus key Windows event IDs.
 
 ## Hunt library
 
-Eighteen Hunt Cards across ten ATT&CK tactics. Each is a complete, documented,
+Twenty-four Hunt Cards across twelve ATT&CK tactics. Each is a complete, documented,
 copy-paste-ready hunt.
 
 | Hunt | ATT&CK | Tactic | Platform |
@@ -90,6 +91,12 @@ copy-paste-ready hunt.
 | [WMI Lateral Movement](hunts/lateral-movement/wmi-lateral-movement.md) | T1047 | Lateral Movement | Defender XDR |
 | [C2 Beaconing by Regularity](hunts/command-and-control/c2-beaconing-regularity.md) | T1071.001 | Command & Control | Both |
 | [OAuth Consent & Mailbox Exfil](hunts/exfiltration/oauth-consent-mailbox-exfil.md) | T1098.003/T1114 | Collection/Exfil (cloud) | Both |
+| [Screen Capture & Clipboard](hunts/collection/screen-capture-clipboard.md) | T1113/T1115 | Collection | Defender XDR |
+| [Archive for Staging](hunts/collection/archive-for-staging.md) | T1560.001 | Collection | Both |
+| [Automated Collection from Shares](hunts/collection/automated-collection-file-share.md) | T1119/T1039 | Collection | Defender XDR |
+| [Exfiltration Over C2 Channel](hunts/exfiltration/exfil-over-web-c2-channel.md) | T1041 | Exfiltration | Defender XDR |
+| [Exfiltration to Cloud Storage](hunts/exfiltration/exfil-to-cloud-storage.md) | T1567.002 | Exfiltration | Both |
+| [Exfil Over Alternative Protocol (DNS)](hunts/exfiltration/exfil-over-alternative-protocol-dns.md) | T1048/T1048.003 | Exfiltration | Both |
 | [Shadow Copy Deletion](hunts/impact/shadow-copy-deletion.md) | T1490 | Impact | Both |
 | [Mass File Encryption](hunts/impact/mass-file-encryption.md) | T1486 | Impact | Defender XDR |
 | [Service Stop & Recovery Tamper](hunts/impact/service-stop-recovery-tamper.md) | T1489/T1490 | Impact | Both |
@@ -101,6 +108,24 @@ See [ATTACK_MATRIX.md](ATTACK_MATRIX.md) for the coverage heatmap and
 [mapping/attack-coverage.md](mapping/attack-coverage.md) for gap analysis.
 
 ---
+
+## Deploy to Sentinel
+
+These hunts aren't just copy-paste — the [`deploy/`](deploy/) directory ships
+infrastructure-as-code to push them into Microsoft Sentinel:
+
+```powershell
+# Deploy every hunt in a tactic as saved Hunting Queries
+./deploy/Deploy-Hunts.ps1 -ResourceGroup rg-sentinel -WorkspaceName law-sentinel `
+  -HuntCardPath hunts/credential-access -Mode HuntingQuery
+
+# Promote a validated hunt to a Scheduled Analytic Rule (alerting)
+./deploy/Deploy-Hunts.ps1 -ResourceGroup rg-sentinel -WorkspaceName law-sentinel `
+  -HuntCardPath hunts/impact/shadow-copy-deletion.md -Mode ScheduledRule
+```
+
+`Deploy-Hunts.ps1` parses each Hunt Card's primary KQL + ATT&CK metadata and
+deploys via the ARM templates. See [deploy/README.md](deploy/README.md).
 
 ## Project structure
 
@@ -127,9 +152,14 @@ threat-hunting-sentinel-defender/
 │   ├── defense-evasion/
 │   ├── discovery/
 │   ├── lateral-movement/
+│   ├── collection/
 │   ├── command-and-control/
 │   ├── exfiltration/
 │   └── impact/
+├── deploy/                       # Push hunts to Sentinel (ARM + PowerShell)
+│   ├── Deploy-Hunts.ps1
+│   ├── scheduled-query-rule.template.json
+│   └── hunting-query.template.json
 ├── templates/
 │   └── hunt-card.md              # Copy-paste template for new hunts
 └── mapping/
@@ -165,7 +195,11 @@ correlate identity/network in Sentinel.
 - [x] Impact hunts (ransomware: shadow copy deletion, mass encryption, service stop)
 - [x] Privilege Escalation hunts (UAC bypass, token manipulation, DLL hijacking)
 - [x] Initial Access hunts (phishing delivery, public-facing app exploit, user execution)
-- [ ] Purple-team validation notes per hunt
+- [x] Collection + Exfiltration hunts (screen/clipboard, archive, C2/cloud/DNS exfil)
+- [x] Purple-team validation notes on every Hunt Card
+- [x] Kill-chain hunt-chaining playbook (correlated intrusion stories)
+- [x] Sentinel deployment tooling (ARM templates + PowerShell)
+- [ ] GitHub Actions CI (hunt validator + link check)
 
 ---
 

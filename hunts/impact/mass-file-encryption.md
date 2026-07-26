@@ -98,6 +98,17 @@ DeviceFileEvents
   (correlate TH-IM-001), original extensions replaced en masse, security tooling
   killed just prior.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** a benign lab 'encryptor' that rewrites >200 files across >20 dirs with a uniform extension (do NOT use real ransomware)
+- **Expected hit:** the single process exceeds the file/dir thresholds in `DeviceFileEvents`, and the ransom-note pivot fires if notes are dropped.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

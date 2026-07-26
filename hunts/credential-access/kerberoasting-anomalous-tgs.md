@@ -90,6 +90,17 @@ IdentityLogonEvents
   tooling, offline ticket export, or the roasted service account authenticates
   from a new host shortly after.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1558.003` (e.g. Rubeus kerberoast, `Request-SPNTicket`)
+- **Expected hit:** the flagged account appears in EID 4769 with `TicketEncryptionType == 0x17` for many distinct SPNs in one window.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

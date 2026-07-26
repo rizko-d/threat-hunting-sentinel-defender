@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Deploys one Microsoft Sentinel saved Hunting Query from a Hunt Card's primary KQL. Part of threat-hunting-sentinel-defender."
+  },
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "metadata": { "description": "Name of the Log Analytics / Sentinel workspace." }
+    },
+    "queryId": {
+      "type": "string",
+      "metadata": { "description": "Stable GUID or Hunt ID-derived name for the saved query." }
+    },
+    "displayName": {
+      "type": "string",
+      "metadata": { "description": "Human-readable query name, e.g. 'TH-DI-001 AD Reconnaissance'." }
+    },
+    "query": {
+      "type": "string",
+      "metadata": { "description": "The primary KQL query text from the Hunt Card." }
+    },
+    "tactics": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": { "description": "ATT&CK tactics for the Hunting query metadata." }
+    },
+    "techniques": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": { "description": "ATT&CK technique IDs for the Hunting query metadata." }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+      "apiVersion": "2020-08-01",
+      "name": "[concat(parameters('workspaceName'), '/', parameters('queryId'))]",
+      "properties": {
+        "category": "Hunting Queries",
+        "displayName": "[parameters('displayName')]",
+        "query": "[parameters('query')]",
+        "version": 2,
+        "tags": [
+          { "name": "description", "value": "Deployed from threat-hunting-sentinel-defender Hunt Card." },
+          { "name": "tactics", "value": "[replace(replace(string(parameters('tactics')),'[',''),']','')]" },
+          { "name": "techniques", "value": "[replace(replace(string(parameters('techniques')),'[',''),']','')]" }
+        ]
+      }
+    }
+  ]
+}

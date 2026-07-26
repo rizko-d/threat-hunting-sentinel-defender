@@ -99,6 +99,17 @@ DeviceRegistryEvents
 - **Malicious confirmation:** the child runs at high integrity, followed by
   credential access, persistence, or defense-tampering that requires admin.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1548.002` (fodhelper, eventvwr, sdclt bypass)
+- **Expected hit:** the auto-elevate binary parents a shell child, and/or the ms-settings/mscfile registry-key write appears.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

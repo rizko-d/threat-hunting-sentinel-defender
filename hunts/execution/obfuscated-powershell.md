@@ -91,6 +91,17 @@ DeviceProcessEvents
 - **Malicious confirmation:** decoding the base64 reveals a loader/stager, the
   host then beacons out, or additional tooling is dropped.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1059.001` (encoded command, `IEX (New-Object Net.WebClient).DownloadString`)
+- **Expected hit:** the process appears with `SuspicionScore >= 2` (encoded flag + hidden window / IEX / download).
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

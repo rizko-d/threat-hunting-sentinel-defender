@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Deploys one Microsoft Sentinel Scheduled Query Rule (analytic detection) from a Hunt Card's primary KQL. Part of threat-hunting-sentinel-defender."
+  },
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "metadata": { "description": "Name of the Log Analytics / Sentinel workspace." }
+    },
+    "ruleId": {
+      "type": "string",
+      "metadata": { "description": "Stable GUID or Hunt ID-derived name for the rule (ensures idempotent updates)." }
+    },
+    "displayName": {
+      "type": "string",
+      "metadata": { "description": "Human-readable rule name, e.g. 'TH-IM-001 Shadow Copy Deletion'." }
+    },
+    "description": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "Rule description (from the Hunt Card hypothesis)." }
+    },
+    "query": {
+      "type": "string",
+      "metadata": { "description": "The primary KQL query text from the Hunt Card." }
+    },
+    "severity": {
+      "type": "string",
+      "defaultValue": "Medium",
+      "allowedValues": [ "Informational", "Low", "Medium", "High" ],
+      "metadata": { "description": "Alert severity (mapped from 'Severity if confirmed')." }
+    },
+    "queryFrequency": {
+      "type": "string",
+      "defaultValue": "PT1H",
+      "metadata": { "description": "How often the rule runs (ISO 8601 duration)." }
+    },
+    "queryPeriod": {
+      "type": "string",
+      "defaultValue": "P1D",
+      "metadata": { "description": "Lookback window the query covers (ISO 8601 duration)." }
+    },
+    "triggerThreshold": {
+      "type": "int",
+      "defaultValue": 0,
+      "metadata": { "description": "Fire when result count is greater than this value." }
+    },
+    "tactics": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": { "description": "ATT&CK tactics, e.g. ['Impact']." }
+    },
+    "techniques": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": { "description": "ATT&CK technique IDs, e.g. ['T1490']." }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('workspaceName'), '/Microsoft.SecurityInsights/', parameters('ruleId'))]",
+      "kind": "Scheduled",
+      "properties": {
+        "displayName": "[parameters('displayName')]",
+        "description": "[parameters('description')]",
+        "severity": "[parameters('severity')]",
+        "enabled": true,
+        "query": "[parameters('query')]",
+        "queryFrequency": "[parameters('queryFrequency')]",
+        "queryPeriod": "[parameters('queryPeriod')]",
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": "[parameters('triggerThreshold')]",
+        "suppressionDuration": "PT1H",
+        "suppressionEnabled": false,
+        "tactics": "[parameters('tactics')]",
+        "techniques": "[parameters('techniques')]",
+        "incidentConfiguration": {
+          "createIncident": true,
+          "groupingConfiguration": {
+            "enabled": true,
+            "reopenClosedIncident": false,
+            "lookbackDuration": "PT5H",
+            "matchingMethod": "AllEntities"
+          }
+        }
+      }
+    }
+  ]
+}

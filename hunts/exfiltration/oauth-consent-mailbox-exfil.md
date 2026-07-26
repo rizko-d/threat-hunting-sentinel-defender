@@ -85,6 +85,17 @@ AuditLogs
   OAuth app has no business purpose, or mail is observed being read/exfiltrated
   via the app's token.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** MailSniper / a test OAuth app consent grant + a lab external-forward inbox rule
+- **Expected hit:** the inbox-rule query fires on external ForwardTo + concealment, or the AuditLogs consent pivot on high-risk mail scopes.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

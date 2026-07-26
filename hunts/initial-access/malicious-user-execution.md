@@ -96,6 +96,17 @@ DeviceProcessEvents
   or establishes persistence — correlate to TH-EX-001 (obfuscated PowerShell) and
   TH-C2-001 (beaconing), and back to TH-IA-001 (the delivering message).
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** `Invoke-AtomicTest T1204.002` (macro spawns cmd), or double-click an exe from a mounted lab ISO
+- **Expected hit:** the Office/browser->interpreter row fires, or the downloads/ISO-path execution pivot surfaces.
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

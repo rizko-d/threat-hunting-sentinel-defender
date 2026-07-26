@@ -96,6 +96,17 @@ DeviceNetworkEvents
   self-signed/default-profile, or the host shows correlated hands-on-keyboard
   activity.
 
+## Validation (Purple Team)
+
+Validate this hunt fires against a **safe, authorized lab** before relying on it.
+
+- **Simulate:** a lab C2 (Sliver/Havoc/Cobalt Strike) beacon at a fixed sleep interval, or `Invoke-AtomicTest T1071.001`
+- **Expected hit:** the host<->destination pair surfaces with `RegularityScore` high (low jitter over >=12 connections).
+- **If it does NOT fire:** check data-source ingestion, the time window, and any
+  baseline exclusions that may be over-broad — then re-run and re-tune.
+
+> Run adversary simulations only in an environment you are authorized to test.
+
 ## 6. Outcome
 
 - [ ] Detection promoted (analytic rule)

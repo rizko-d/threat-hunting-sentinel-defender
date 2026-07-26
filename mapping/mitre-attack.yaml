@@ -145,3 +145,51 @@ hunts:
     platforms: [defender-xdr]
     data_sources: [DeviceProcessEvents, DeviceFileEvents]
     file: hunts/initial-access/malicious-user-execution.md
+
+  - id: TH-CO-001
+    title: Screen Capture & Clipboard Collection
+    tactic: collection
+    techniques: [T1113, T1115]
+    platforms: [defender-xdr]
+    data_sources: [DeviceProcessEvents, DeviceEvents]
+    file: hunts/collection/screen-capture-clipboard.md
+
+  - id: TH-CO-002
+    title: Archive Collected Data for Staging (Archive via Utility)
+    tactic: collection
+    techniques: [T1560.001]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceProcessEvents, DeviceFileEvents, SecurityEvent]
+    file: hunts/collection/archive-for-staging.md
+
+  - id: TH-CO-003
+    title: Automated Collection from Network Shares
+    tactic: collection
+    techniques: [T1119, T1039]
+    platforms: [defender-xdr]
+    data_sources: [DeviceProcessEvents, DeviceFileEvents, DeviceNetworkEvents]
+    file: hunts/collection/automated-collection-file-share.md
+
+  - id: TH-XF-001
+    title: Exfiltration Over C2 Channel
+    tactic: exfiltration
+    techniques: [T1041]
+    platforms: [defender-xdr]
+    data_sources: [DeviceNetworkEvents]
+    file: hunts/exfiltration/exfil-over-web-c2-channel.md
+
+  - id: TH-XF-002
+    title: Exfiltration to Cloud Storage
+    tactic: exfiltration
+    techniques: [T1567.002]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DeviceNetworkEvents, DeviceProcessEvents]
+    file: hunts/exfiltration/exfil-to-cloud-storage.md
+
+  - id: TH-XF-003
+    title: Exfiltration Over Alternative Protocol (DNS / Non-Standard Port)
+    tactic: exfiltration
+    techniques: [T1048, T1048.003]
+    platforms: [defender-xdr, sentinel]
+    data_sources: [DnsEvents, DeviceNetworkEvents]
+    file: hunts/exfiltration/exfil-over-alternative-protocol-dns.md
